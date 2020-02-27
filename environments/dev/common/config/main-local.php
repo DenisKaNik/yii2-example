@@ -1,11 +1,25 @@
 <?php
+
+if (!function_exists('env')) {
+    require(__DIR__ . '/../../vendor/autoload.php');
+    require(__DIR__ . '/../helpers/EnvHelper.php');
+
+    $dotenv = Dotenv\Dotenv::createImmutable(dirname(dirname(__DIR__)));
+    $dotenv->load();
+
+    // unset env by $_SERVER
+    array_map(function($key) {
+        unset($_SERVER[$key]);
+    }, array_keys($_ENV));
+}
+
 return [
     'components' => [
         'db' => [
             'class' => 'yii\db\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=yii2advanced',
-            'username' => 'root',
-            'password' => '',
+            'dsn' => 'mysql:host='.env('DB_HOST', 'localhost').';port='.env('DB_PORT', '3306').';dbname='.env('DB_NAME'),
+            'username' => env('DB_USR'),
+            'password' => env('DB_PWD'),
             'charset' => 'utf8',
         ],
         'mailer' => [
