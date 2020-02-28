@@ -13,6 +13,8 @@ if (!function_exists('env')) {
     }, array_keys($_ENV));
 }
 
+require_once(__DIR__.'/functions-local.php');
+
 return [
     'components' => [
         'db' => [
