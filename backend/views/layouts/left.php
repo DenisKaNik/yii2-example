@@ -30,6 +30,10 @@
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
+                    ['label' => 'Management', 'options' => ['class' => 'header']],
+                    ['label' => 'Authors', 'icon' => 'users', 'url' => ['/library/author']],
+                    ['label' => 'Books', 'icon' => 'book', 'url' => ['/library/book']],
+
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
