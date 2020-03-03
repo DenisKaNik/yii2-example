@@ -21,7 +21,8 @@
         "vlucas/phpdotenv": "*",
         "dmstr/yii2-adminlte-asset": "^2.1",
         "yiidoc/yii2-redactor": "*",
-        "la-haute-societe/yii2-save-relations-behavior": "*"
+        "la-haute-societe/yii2-save-relations-behavior": "*",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
