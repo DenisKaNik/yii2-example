@@ -12,7 +12,14 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => dirname(dirname(__DIR__)).'/www/uploads/files',
+            'uploadUrl' => '/uploads/files',
+            'imageAllowExtensions'=>['jpg','png','gif','xls','pdf','doc']
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-backend',
