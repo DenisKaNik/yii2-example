@@ -2,14 +2,18 @@
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\ResetPasswordForm */
+/* @var $model frontend\models\ResetPasswordForm */
 
+use common\widgets\Alert;
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 $this->title = 'Reset password';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+<?= Alert::widget(); ?>
+
 <div class="site-reset-password">
     <h1><?= Html::encode($this->title) ?></h1>
 
