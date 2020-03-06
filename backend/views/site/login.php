@@ -31,12 +31,12 @@ $fieldOptions2 = [
 
         <?= $form
             ->field($model, 'username', $fieldOptions1)
-            ->label(false)
+            ->label(YII_ENV_TEST ? true : false)
             ->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
 
         <?= $form
             ->field($model, 'password', $fieldOptions2)
-            ->label(false)
+            ->label(YII_ENV_TEST ? true : false)
             ->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
 
         <div class="row">
