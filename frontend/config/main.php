@@ -43,6 +43,8 @@ return [
             'rules' => [
                 '' => 'site/index',
                 '<_a:about|contact>' => 'site/<_a>',
+                'books' => 'book/index',
+                'book/<slug:[\w-]+>' => 'book/view',
             ],
         ],
     ],

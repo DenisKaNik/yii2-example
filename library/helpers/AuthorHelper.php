@@ -50,4 +50,15 @@ class AuthorHelper
             }
         );
     }
+
+    public static function simpleListByPublic($ids = null)
+    {
+        return ArrayHelper::map(
+            self::arrayList($ids),
+            'id',
+            function (array $author) {
+                return trim($author['first_name'] . ' ' . $author['last_name']);
+            }
+        );
+    }
 }

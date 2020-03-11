@@ -42,6 +42,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <!-- shop css -->
     <link href="/css/shop.css" type="text/css" rel="stylesheet" media="all">
+
+    <?php if (strpos(Url::current(), '/book/') !== false): ?>
+        <link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
+    <?php endif; ?>
+
     <!-- gallery desoslide -->
     <link rel="stylesheet" href="/css/animate.min.css">
     <link rel="stylesheet" href="/css/jquery.desoslide.css">
@@ -90,6 +95,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             'items' => [
                                 ['label' => 'Home', 'url' => ['/']],
                                 ['label' => 'About', 'url' => ['/about']],
+                                ['label' => 'Books', 'url' => ['/books']],
                                 ['label' => 'Contact', 'url' => ['/contact']],
                             ],
                         ]);
@@ -325,6 +331,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- js -->
     <script src="/js/jquery-2.2.3.min.js"></script>
 <!-- //js -->
+
+<?php if (strpos(Url::current(), '/book/') !== false): ?>
+    <!-- zoom -->
+    <script src="/js/imagezoom.js"></script>
+    <!-- zoom-->
+    <!-- single -->
+    <!-- FlexSlider -->
+    <script src="/js/jquery.flexslider.js"></script>
+    <script>
+        // Can also be used with $(document).ready()
+        $(window).load(function () {
+            $('.flexslider1').flexslider({
+                animation: "slide",
+                controlNav: "thumbnails"
+            });
+        });
+    </script>
+    <!-- //FlexSlider-->
+<?php endif; ?>
+
 <!-- dropdown nav -->
 <script>
     $(document).ready(function () {
@@ -398,9 +424,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             };
             */
 
-            $().UItoTop({
+            /*$().UItoTop({
                 easingType: 'easeOutQuart'
-            });
+            });*/
 
         });
     </script>
@@ -416,7 +442,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="/js/bootstrap.js"></script>
 
-<?php if (Url::current() != '/about'): ?>
+<?php if ((Url::current() != '/about') && (strpos(Url::current(), '/book/') === false)): ?>
     <?php $this->endBody() ?>
 <?php endif; ?>
 

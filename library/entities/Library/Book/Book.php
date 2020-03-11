@@ -135,6 +135,11 @@ class Book extends ActiveRecord
         return $this->hasMany(RelatedAssignment::class, ['book_id' => 'id']);
     }
 
+    public function getRelatedAssignmentsActive(): ActiveQuery
+    {
+        return $this->hasMany(self::class, ['id' => 'related_id'])->active()->via('relatedAssignments');
+    }
+
     public function getAuthorAssignments(): ActiveQuery
     {
         return $this->hasMany(AuthorAssignment::class, ['book_id' => 'id']);

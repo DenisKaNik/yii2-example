@@ -575,6 +575,14 @@ ul.stars li a:hover {
 	transition: .5s all;
 }
 
+.product-sec1 .product-chr-info {
+	min-height: 375px;
+}
+
+.swiper-slide .product-chr-info {
+	min-height: 450px;
+}
+
 .product-chr-info:hover {
 	box-shadow: -2px 4px 50px rgba(25, 13, 15, 0.38);
 }
@@ -1432,6 +1440,14 @@ ul.single_specific li {
 
 .col-md-3.product-men {
 	background: #fff;
+}
+
+.product-sec1 .col-md-3.product-men {
+	min-height: 375px;
+}
+
+.swiper-slide .col-md-3.product-men {
+	min-height: 450px;
 }
 
 /*-- /Responsive --*/
