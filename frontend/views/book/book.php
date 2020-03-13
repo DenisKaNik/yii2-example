@@ -6,6 +6,11 @@
 
 use library\helpers\BookHelper;
 
+$this->title = $book->seoTitle;
+
+$this->registerMetaTag(['name' =>'description', 'content' => $book->meta->description]);
+$this->registerMetaTag(['name' =>'keywords', 'content' => $book->meta->keywords]);
+
 ?>
 <!-- breadcrumbs -->
 <div class="crumbs text-center">
