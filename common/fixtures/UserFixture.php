@@ -5,5 +5,6 @@ use yii\test\ActiveFixture;
 
 class UserFixture extends ActiveFixture
 {
-    public $modelClass = 'common\models\User';
+    public $modelClass = 'library\entities\User\User';
+    public $dataFile = '@common/fixtures/data/user.php';
 }
