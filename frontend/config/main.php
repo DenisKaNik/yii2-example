@@ -37,16 +37,10 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-                '' => 'site/index',
-                '<_a:about|contact>' => 'site/<_a>',
-                'books' => 'book/index',
-                'book/<slug:[\w-]+>' => 'book/view',
-            ],
-        ],
+        'frontendUrlManager' => require __DIR__ . '/urlManager.php',
+        'urlManager' => function () {
+            return Yii::$app->get('frontendUrlManager');
+        },
     ],
     'params' => $params,
 ];
