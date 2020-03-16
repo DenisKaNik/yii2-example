@@ -17,6 +17,11 @@ class BookReadRepository
         return $this->getProvider($query);
     }
 
+    public function find($id): ?Book
+    {
+        return Book::find()->active()->andWhere(['id' => $id])->one();
+    }
+
     public function findBySlug($slug): ?Book
     {
         return Book::find()->active()->andWhere(['slug' => $slug])->one();
