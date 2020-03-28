@@ -22,7 +22,9 @@
         "dmstr/yii2-adminlte-asset": "^2.1",
         "yiidoc/yii2-redactor": "*",
         "la-haute-societe/yii2-save-relations-behavior": "*",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "filsh/yii2-oauth2-server": "*",
+        "yiisoft/yii2-authclient": "^2.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
@@ -33,7 +35,9 @@
         "codeception/module-yii2": "^1.0",
         "codeception/module-filesystem": "^1.0",
         "codeception/verify": "~0.5.0 || ~1.1.0",
-        "symfony/browser-kit": ">=2.7 <=4.2.4"
+        "symfony/browser-kit": ">=2.7 <=4.2.4",
+        "codeception/module-phpbrowser": "^1.0",
+        "codeception/module-rest": "^1.2"
     },
     "config": {
         "process-timeout": 1800,
