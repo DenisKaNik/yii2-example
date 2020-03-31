@@ -50,6 +50,29 @@ class BookController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/v1/books",
+     *     tags={"Books"},
+     *     description="List books",
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid response"
+     *     ),
+     *     security={{"bearerAuth": {}, "OAuth2": {}}}
+     * )
+     *
      * @return DataProviderInterface
      */
     public function actionIndex(): DataProviderInterface
@@ -75,6 +98,38 @@ class BookController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *     path="/v1/books/{bookId}",
+     *     tags={"Books"},
+     *     description="Book view",
+     *     @OA\Parameter(
+     *         description="Book id to view",
+     *         in="path",
+     *         name="bookId",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid response"
+     *     ),
+     *     security={{"bearerAuth": {}, "OAuth2": {}}}
+     * )
      * @param $id
      * @return array
      * @throws NotFoundHttpException
@@ -88,6 +143,48 @@ class BookController extends Controller
     }
 
     /**
+     * @OA\Put(
+     *     path="/v1/books/{bookId}",
+     *     tags={"Books"},
+     *     description="Book update",
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         description="Book id that to be updated",
+     *         in="path",
+     *         name="bookId",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         description="Updated book object",
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/Book")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="successful operation",
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid response"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Book not found"
+     *     ),
+     *     security={{"bearerAuth": {}, "OAuth2": {}}}
+     * )
+     *
      * @param $id
      * @throws BadRequestHttpException
      */
@@ -107,6 +204,40 @@ class BookController extends Controller
     }
 
     /**
+     * @OA\Delete(
+     *     path="/v1/books/{bookId}",
+     *     summary="Deletes a book",
+     *     description="",
+     *     tags={"Books"},
+     *     @OA\Parameter(
+     *         description="Book id to delete",
+     *         in="path",
+     *         name="bookId",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer",
+     *             format="int64"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="Authorization",
+     *         in="header",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Invalid ID supplied"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Book not found"
+     *     ),
+     *     security={{"bearerAuth":{}}}
+     * )
+     *
      * @param $id
      * @throws BadRequestHttpException
      * @throws \Throwable
@@ -148,3 +279,50 @@ class BookController extends Controller
         ];
     }
 }
+
+/**
+ * @OA\Schema(
+ *     schema="Book",
+ *     type="object",
+ *     @OA\Property(
+ *         property="id",
+ *         title="Id",
+ *         type="integer",
+ *         format="int64",
+ *     ),
+ *     @OA\Property(
+ *         property="name",
+ *         title="Name",
+ *         type="string",
+ *     ),
+ *     @OA\Property(
+ *         property="isbn",
+ *         title="Isbn",
+ *         type="string",
+ *     ),
+ *     @OA\Property(
+ *         property="slug",
+ *         title="Slug",
+ *         type="string",
+ *     ),
+ *     @OA\Property(
+ *         property="description",
+ *         title="Description",
+ *         type="string",
+ *     ),
+ *     @OA\Property(
+ *         property="meta_json",
+ *         title="Meta JSON",
+ *         type="object",
+ *         @OA\Property(property="meta_title", title="Meta Title", type="string"),
+ *         @OA\Property(property="meta_description", title="Meta Description", type="string"),
+ *         @OA\Property(property="meta_keywords", title="Meta Keywords", type="string"),
+ *     ),
+ *     @OA\Property(
+ *         property="active",
+ *         title="Active",
+ *         type="integer",
+ *         format="int32",
+ *     ),
+ * )
+ */

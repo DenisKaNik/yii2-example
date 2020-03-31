@@ -1,0 +1,389 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Library API",
+        "description": "HTTP JSON API",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "{schema}://api.yii2-example.loc",
+            "description": "OpenApi common parameters",
+            "variables": {
+                "schema": {
+                    "enum": [
+                        "http"
+                    ],
+                    "default": "http"
+                }
+            }
+        },
+        {
+            "url": "{schema}://api.yii2-example.loc/{version}",
+            "description": "OpenApi by version",
+            "variables": {
+                "schema": {
+                    "enum": [
+                        "http"
+                    ],
+                    "default": "http"
+                },
+                "version": {
+                    "enum": [
+                        "v1"
+                    ],
+                    "default": "v1"
+                }
+            }
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Info"
+                ],
+                "operationId": "api\\controllers\\SiteController::actionIndex",
+                "responses": {
+                    "200": {
+                        "description": "API version"
+                    }
+                }
+            }
+        },
+        "/profile": {
+            "get": {
+                "tags": [
+                    "Profile"
+                ],
+                "description": "Returns profile info",
+                "operationId": "api\\controllers\\user\\ProfileController::actionIndex",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid token supplier"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "404": {
+                        "description": "Profile not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "OAuth2": []
+                    }
+                ]
+            }
+        },
+        "/v1/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "description": "List books",
+                "operationId": "api\\controllers\\v1\\library\\BookController::actionIndex",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "OAuth2": []
+                    }
+                ]
+            }
+        },
+        "/v1/books/{bookId}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "description": "Book view",
+                "operationId": "api\\controllers\\v1\\library\\BookController::actionView",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book id to view",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid response"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "OAuth2": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Books"
+                ],
+                "description": "Book update",
+                "operationId": "api\\controllers\\v1\\library\\BookController::actionUpdate",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book id that to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Updated book object",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Book"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    },
+                    "400": {
+                        "description": "Invalid response"
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [],
+                        "OAuth2": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Deletes a book",
+                "description": "",
+                "operationId": "api\\controllers\\v1\\library\\BookController::actionDelete",
+                "parameters": [
+                    {
+                        "name": "bookId",
+                        "in": "path",
+                        "description": "Book id to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "400": {
+                        "description": "Invalid ID supplied"
+                    },
+                    "404": {
+                        "description": "Book not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "email": {
+                        "title": "Email",
+                        "type": "string"
+                    },
+                    "date": {
+                        "title": "Date",
+                        "properties": {
+                            "created": {
+                                "title": "Created",
+                                "type": "string"
+                            },
+                            "updated": {
+                                "title": "Updated",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "status": {
+                        "title": "Status",
+                        "properties": {
+                            "code": {
+                                "title": "Code",
+                                "type": "integer",
+                                "format": "int32"
+                            },
+                            "name": {
+                                "title": "Name",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object"
+            },
+            "Book": {
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "name": {
+                        "title": "Name",
+                        "type": "string"
+                    },
+                    "isbn": {
+                        "title": "Isbn",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "title": "Slug",
+                        "type": "string"
+                    },
+                    "description": {
+                        "title": "Description",
+                        "type": "string"
+                    },
+                    "meta_json": {
+                        "title": "Meta JSON",
+                        "properties": {
+                            "meta_title": {
+                                "title": "Meta Title",
+                                "type": "string"
+                            },
+                            "meta_description": {
+                                "title": "Meta Description",
+                                "type": "string"
+                            },
+                            "meta_keywords": {
+                                "title": "Meta Keywords",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "active": {
+                        "title": "Active",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "OAuth2": {
+                "type": "oauth2",
+                "flows": {
+                    "password": {
+                        "tokenUrl": "http://api.shop.dev/oauth2/token",
+                        "scopes": []
+                    }
+                }
+            },
+            "bearerAuth": {
+                "type": "http",
+                "name": "Bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
