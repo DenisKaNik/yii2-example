@@ -15,5 +15,7 @@ return [
         '<_a:about|contact>' => 'site/<_a>',
         'books' => 'book/index',
         'book/<slug:[\w-]+>' => 'book/view',
+        ['class' => \frontend\components\UrlRule::class],
+        ['class' => \api\config\ApiUrlRule::class],
     ],
 ];
